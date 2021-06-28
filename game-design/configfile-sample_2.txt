@@ -1,0 +1,15 @@
+#sample configfile
+gamemap-dims          : 3,3
+gamemap-dead_rooms    : 1,4
+gamemap-start         : 0
+gamemap-end           : 2
+gamemap-goal          : 6 , Sack of Gold
+gamemap-monsters      : auto
+
+design-intro          : intro.txt
+design-monsters       : monsters-sample.txt
+design-escape         : escape.txt
+
+nav-actions           : go, run, sneak
+
+player-actions        : inspect room, pickup item, read map

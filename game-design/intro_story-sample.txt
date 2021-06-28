@@ -1,0 +1,5 @@
+Welcome to the Crazytown Adventure run.
+You awake with a vague idea of where you are what you should be doing.
+The only information you know is to retrieve an artifact and make your way out as quickly as possible.
+The dangers that lay ahead are unknown to you.
+    

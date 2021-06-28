@@ -1,0 +1,6 @@
+#sample monster file
+#format
+#name,win-conditions('-' separated),death text
+tyranosaurus,sneak-attack,The T-Rex devours you.
+snakes,run,You pass out due to fright and are consumed by snakes.
+bear,run-attack,The bear tears you limb from limb.
