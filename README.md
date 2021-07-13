@@ -2,7 +2,7 @@
 - python 3 with only standard libraries
   
 # How to start a game
-python game.py < configfile >  
+python /src/game.py < configfile >  
 < configfile > must exist in the game-design folder  
   
 #Design Information  
