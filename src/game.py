@@ -1,3 +1,4 @@
+
 '''
     This is the main file for an adventure game.
 
@@ -9,9 +10,9 @@ import random
 import math
 
 # Internal files
+import engine
 import gamemap
 import player
-import engine
 import monsters
 
 #################################
