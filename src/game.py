@@ -24,6 +24,7 @@ def get_all_config_lines(configfile_path):
         Collect all lines with configuration data from the configfile
     '''
     config = dict()
+    config["path"] = os.path.dirname(configfile_path)
 
     with open(configfile_path, 'r') as f:
         for line in f:
@@ -52,7 +53,7 @@ def populate_monsters(game_map, game_design):
 
     rooms_unavailable = [game_map.start, game_map.end, *game_map.dead_rooms]
     rooms_available = [room for room in list(range(0,game_map.width*game_map.height-1)) if room not in rooms_unavailable]
-    
+
     if len(rooms_available) > 0:
         monsters_to_add = random.randint(1,math.ceil((len(rooms_available))/2))
 
@@ -93,11 +94,11 @@ def build_game_from_configfile(config):
     #load game_design parameters from config
     game_design = dict()
     if "design" in config:
-        for key, file in {key : "./game-design/" + loc for key, loc in config["design"].items()}.items():
-            if not os.path.isfile(file):
-                print("Warning :: design-{} {} file not found.".format(key,file))
+        for key, filepath in {key : os.path.join(config["path"], filename) for key, filename in config["design"].items()}.items():
+            if os.path.isfile(filepath):
+                game_design[key] = filepath
             else:
-                game_design[key] = file
+                print("Warning :: design-{} {} file not found.".format(key,filepath))
 
     #load game map class from config
     game_map = gamemap.gamemap()
@@ -108,7 +109,7 @@ def build_game_from_configfile(config):
         elif need_monster_return == -1:
             print("Error :: Monster parameters incompatible.")
             good_config = False
-    
+
     else:
         print("Error :: Failed to load game map configuration.")
         good_config = False
@@ -136,10 +137,8 @@ def cli():
 
     args = my_parser.parse_args()
 
-    filepath = os.path.abspath("./game-design/" + args.path)
-
-    if os.path.isfile(filepath):
-        return filepath
+    if os.path.isfile(args.path):
+        return os.path.abspath(args.path)
     else:
         print("Error :: Invalid configuration file path")
         return False
