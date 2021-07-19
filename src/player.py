@@ -45,13 +45,13 @@ class player:
         self.movement_directions = dirs
 
     def _add_nav_actions(self,actions):
-        self.nav_actions = [act.strip() for act in actions.strip().split(',')]
+        self.nav_actions = actions
         print("{}Player navigation options loaded".format(self._indent))
         for nav in self._make_nav_pretty():
             print("{}{}".format(self._indent*2,nav))
         
     def _add_player_actions(self,actions):
-        self.player_actions = [act.strip() for act in actions.strip().split(',')]
+        self.player_actions = actions
         print("{}Player actions loaded".format(self._indent))
         for act in self.player_actions:
             print("{}{}".format(self._indent*2,act))

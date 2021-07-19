@@ -1,0 +1,22 @@
+---
+# sample configfile
+
+gamemap:
+    width         : 3
+    height        : 3
+    dead_rooms    : [1,4]
+    start         : 0
+    end           : 2
+    goal          : [6 , Sack of Gold]
+    monsters      : auto
+
+design:
+    intro         : intro.txt
+    monsters      : monsters-sample.txt
+    escape        : escapte.txt
+
+nav:
+    actions       : [go, run, sneak]
+
+player:
+    actions       : [inspect room, pickup item, read map]

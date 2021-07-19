@@ -8,6 +8,7 @@ import os
 import argparse
 import random
 import math
+import yaml
 
 # Internal files
 import engine
@@ -22,29 +23,17 @@ INDENT = "    "
 def get_all_config_lines(configfile_path):
     '''
         Collect all lines with configuration data from the configfile
+
     '''
-    config = dict()
+
+    stream = open("../game-design/configfile-sample.yaml", 'r')
+    config = yaml.safe_load(stream)
+    
     config["path"] = os.path.dirname(configfile_path)
 
-    with open(configfile_path, 'r') as f:
-        for line in f:
-            if len(line.strip())== 0 or line[0] == '#':
-                #ignore blank or comment lines
-                continue
-            else:
-                category = line.split('-')[0]
-                component = line.split('-')[1].split(':')[0].strip()
-                design_info = line.split(':')[1].strip()
-
-                if category not in config:
-                    config[category] = dict()
-                elif component in config[category]:
-                    print("Warning :: conflicting parameters - Listed more than 1 time , {}-{}".format(category,component))
-                    print("Warning :: using last found parameters - {}".format(line.strip()))
-
-                config[category][component] = design_info
-
     return config
+
+
 
 def populate_monsters(game_map, game_design):
     '''
@@ -137,10 +126,10 @@ def cli():
 
     args = my_parser.parse_args()
 
-    if os.path.isfile(args.path):
+    if os.path.isfile(os.path.abspath(args.path)):
         return os.path.abspath(args.path)
     else:
-        print("Error :: Invalid configuration file path")
+        print("Error :: Invalid configuration file path : {}".format(os.path.abspath(args.path)))
         return False
 
 '''

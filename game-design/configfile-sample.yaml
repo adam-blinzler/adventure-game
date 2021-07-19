@@ -1,0 +1,21 @@
+---
+# sample configfile
+
+gamemap:
+    width         : 3
+    height        : 3
+    dead_rooms    : [3,5]
+    start         : 0
+    end           : 1
+    goal          : [6 , Flaming Dragon Scale]
+    monsters      : auto
+
+design:
+    intro         : intro_story-sample.txt
+    monsters      : monsters-sample.txt
+
+nav:
+    actions       : [go, run, sneak]
+
+player:
+    actions       : [inspect room, pickup item, read map, attack]

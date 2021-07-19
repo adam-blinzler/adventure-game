@@ -21,7 +21,7 @@ class gamemap():
         self.dead_rooms = []
 
         self.config_catagories = ["gamemap"]
-        self.config_component_required = ["dims","start","end"]
+        self.config_component_required = ["width","height","start","end"]
         self.movement_directions = ['n','s','e','w']
     '''
         Configuration management
@@ -39,8 +39,8 @@ class gamemap():
         else:
             print("\nLoading Gamemap design info ....")
             # configure board layout
-            N = int(config["gamemap"]["dims"].split(',')[0].strip())
-            M = int(config["gamemap"]["dims"].split(',')[1].strip())
+            N = config["gamemap"]["width"]
+            M = config["gamemap"]["height"]
             self._build_board(N,M)
             print("{}Board created".format(indent))
 
@@ -69,11 +69,11 @@ class gamemap():
         self.end = end
 
     def _set_dead_rooms(self, dead_rooms):
-        self.dead_rooms = [int(room) for room in dead_rooms.strip().split(',')]
+        self.dead_rooms = dead_rooms
 
     def _add_goal(self,goal):
-        goal_loc = int(goal.split(',')[0].strip())
-        goal_name = goal.split(',')[1].strip()
+        goal_loc = int(goal[0])
+        goal_name = goal[1].strip()
         self.add_to_room(goal_loc,["item", goal_name])
 
         self.need_item = goal_name
